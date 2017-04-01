@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右侧悬浮</title>
+</head>
+<body>
+	<button id="btn">发起请求</button>
+	<!-- <div class="list">
+		<h1>标题</h1>
+		<p>概要</p>
+		<a href="">
+			<img src="">
+		</a>
+	</div> -->
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("#btn").on("click", function() {
+			$.ajax({
+				url:"http://www1.qdfuns.com/feres.php?&do=picture&listtype=",
+				type: "POST",
+				data: {
+					startNum: 10,
+					dataLen: 1,
+					type: "ajax",
+					randoms: 0.611904577804181
+				},
+				dataType: "json",
+				success: function(data) {
+					console.log(data)
+					var list = '<div class="list">'+
+									'<h1>'+unescape(data[0].title)+'</h1>'+
+									'<p>'+unescape(data[0].summary)+'</p>'+
+									'<a href="http://www1.qdfuns.com/'+data[0].url+'">'+
+										'<img src="http://www1.qdfuns.com/'+data[0].pic+'">'+
+									'</a>'+
+								'</div>';
+					$("body").append(list);
+				}
+			})
+		})
+		
+		
+	</script>
+</body>
+</html>

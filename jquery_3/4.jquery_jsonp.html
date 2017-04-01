@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右侧悬浮</title>
+</head>
+<body>
+	<input type="text" id="key">
+	<ol id="listbox"></ol>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript">
+		// 1. 找jsonp接口 https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=ak&json=1&cb=aa
+		// 
+		// url 接口地址
+		// dataType 请求数据的类型
+		// data 请求的参数
+		// jsonp 
+		
+		$("#key").on("input", function() {
+			// XMLHttpRequest
+			$.ajax({
+				url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+				dataType:"jsonp",
+				data: {
+					wd: $.trim($(this).val())
+				},
+				jsonp:"cb",
+				success: function(data) {//请求成功
+					$("#listbox").html("");
+					$.each(data.s, function(index, key) {
+						var li = $("<li />", {
+							text: key
+						})
+						$("#listbox").append(li);
+					})
+					
+				}
+			})
+		})
+		
+	</script>
+</body>
+</html>

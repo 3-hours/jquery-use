@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zepto.js</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript" src="./js/zepto.min.js"></script>
+	<script type="text/javascript" src="./js/zepto.fn_method.js"></script>
+	<script type="text/javascript">
+		$(document).on("click", function() {
+			$("#box").animate({
+				width: 200
+			}, 300, function() {
+				alert("2")
+				$("#box").fadeOut()
+			})
+		})
+	</script>
+</body>
+</html>
